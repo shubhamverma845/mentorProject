@@ -1,7 +1,7 @@
-package com.example.Mentor.demo.Sirion.Controller;
+package com.example.project.demo.Sirion.TechnologyMicroservice.Controller;
 
-import com.example.Mentor.demo.Sirion.Model.Technology;
-import com.example.Mentor.demo.Sirion.Service.TechnologyService;
+import com.example.project.demo.Sirion.TechnologyMicroservice.Model.Technology;
+import com.example.project.demo.Sirion.TechnologyMicroservice.Service.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class TechnologyController {
 
     @PostMapping(value = "/createTechnology", headers = "Accept=application/json")
     public ResponseEntity<Void> createTechnology(@RequestBody Technology technology){
-        System.out.println("Creating Technology::" + technology.getTech_name());
+        System.out.println("Creating Technology::" + technology.getTechName());
         technologyService.createTechnology(technology);
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -28,8 +28,7 @@ public class TechnologyController {
 
     @GetMapping(value = "/getAllTechnologies", headers = "Accept=application/json")
     public List<Technology> getAllTechnology(){
-        List<Technology> list = technologyService.getAllTechnology();
-        return list;
+        return technologyService.getAllTechnology();
     }
 
     @DeleteMapping(value = "/deleteTechnology/{id}", headers = "Accept=application/json")
@@ -85,6 +84,14 @@ public class TechnologyController {
 //        System.out.println("Page::" + pageNo);
 
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/searchByName")
+    public List<Technology> getTechnologyByName(@RequestParam(defaultValue = "") String name){
+        if(name.isEmpty()){
+            return technologyService.getAllTechnology();
+        }
+        return technologyService.findByName(name);
     }
 
 }

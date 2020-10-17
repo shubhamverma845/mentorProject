@@ -1,4 +1,4 @@
-package com.example.Mentor.demo.Sirion.Model;
+package com.example.project.demo.Sirion.TechnologyMicroservice.Model;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -11,11 +11,11 @@ import javax.persistence.*;
 public class Technology {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
-    String tech_name;
+    String techName;
 
     @Column
     long duration;
@@ -26,20 +26,20 @@ public class Technology {
     @ColumnDefault("false")
     boolean status;
 
+    public String getTechName() {
+        return techName;
+    }
+
+    public void setTechName(String techName) {
+        this.techName = techName;
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getTech_name() {
-        return tech_name;
-    }
-
-    public void setTech_name(String tech_name) {
-        this.tech_name = tech_name;
     }
 
     public long getDuration() {

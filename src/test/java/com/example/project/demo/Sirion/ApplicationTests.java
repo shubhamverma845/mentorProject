@@ -1,4 +1,4 @@
-package com.example.Mentor.demo.Sirion;
+package com.example.project.demo.Sirion;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

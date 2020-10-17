@@ -1,7 +1,7 @@
-package com.example.Mentor.demo.Sirion.Service;
+package com.example.project.demo.Sirion.TechnologyMicroservice.Service;
 
-import com.example.Mentor.demo.Sirion.Model.Technology;
-import com.example.Mentor.demo.Sirion.Repository.TechnologyRepository;
+import com.example.project.demo.Sirion.TechnologyMicroservice.Model.Technology;
+import com.example.project.demo.Sirion.TechnologyMicroservice.Repository.TechnologyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -36,6 +36,11 @@ public class TechnologyServiceImp implements TechnologyService {
     @Override
     public void deleteTechnologyById(long id) {
         technologyRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Technology> findByName(String name){
+        return technologyRepository.findByTechName(name);
     }
 
     @Override

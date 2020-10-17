@@ -1,4 +1,4 @@
-package com.example.Mentor.demo.Sirion;
+package com.example.project.demo.Sirion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
