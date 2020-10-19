@@ -25,7 +25,7 @@ public class User {
     boolean active;
 
     @Column(nullable = false)
-    char lORm;
+    String lORm;
 
     public long getId() {
         return id;
@@ -59,11 +59,11 @@ public class User {
         this.active = active;
     }
 
-    public char getlORm() {
+    public String getlORm() {
         return lORm;
     }
 
-    public void setlORm(char lORm) {
+    public void setlORm(String lORm) {
         this.lORm = lORm;
     }
 }
