@@ -1,6 +1,5 @@
 package com.example.project.demo.Sirion.SearchMicroservice.Controller;
 
-
 import com.example.project.demo.Sirion.SearchMicroservice.Model.Mentor;
 import com.example.project.demo.Sirion.SearchMicroservice.Service.MentorService;
 import com.example.project.demo.Sirion.TechnologyMicroservice.Model.Technology;
@@ -25,7 +24,7 @@ public class MentorController {
     }
 
     @GetMapping(value = "/{id}", headers = "Accept=application/json")
-    public ResponseEntity<Mentor> getMentorById(@PathVariable long id){
+    public ResponseEntity<Mentor> getMentorById(@PathVariable("id") long id){
         Mentor mentor = mentorService.findById(id);
 
         if(mentor == null){
@@ -40,6 +39,16 @@ public class MentorController {
         mentorService.createMentor(mentor);
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/createMultipleMentors", headers = "Accept=application/json")
+    public ResponseEntity<Void> createMultipleMentors(@RequestBody List<Mentor> mentors){
+        System.out.println("Creating Mentors........");
+        for (Mentor mentor: mentors){
+            mentorService.createMentor(mentor);
+        }
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping(value = "/deleteMentor/{id}", headers = "Accept=application/json")

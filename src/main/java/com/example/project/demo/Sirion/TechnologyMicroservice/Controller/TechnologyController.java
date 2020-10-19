@@ -18,6 +18,7 @@ public class TechnologyController {
     @Autowired
     TechnologyService technologyService;
 
+    //addSkill
     @PostMapping(value = "/createTechnology", headers = "Accept=application/json")
     public ResponseEntity<Void> createTechnology(@RequestBody Technology technology){
         System.out.println("Creating Technology::" + technology.getTechName());
@@ -52,6 +53,7 @@ public class TechnologyController {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
+    //addSkills
     @PostMapping(value = "/createMultipleTechnologies", headers = "Accept=application/json")
     public ResponseEntity<Void> createMultipleTechnologies(@RequestBody List<Technology> technologies){
         System.out.println("Creating multiple technologies.....");
@@ -63,6 +65,8 @@ public class TechnologyController {
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
+
+    //getSkill
     @GetMapping(value = "/{id}", headers = "Accept=application/json")
     public ResponseEntity<Technology> getTechnologyById(@PathVariable("id") long id){
         Technology technology = technologyService.findById(id);
@@ -70,6 +74,12 @@ public class TechnologyController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(technology, HttpStatus.OK);
+    }
+
+
+    @GetMapping(value = "/getSkillName", headers = "Accept=application/json")
+    public String getSkillName(@RequestParam long skillId){
+        return technologyService.findById(skillId) == null ? "N-A" : technologyService.findById(skillId).getTechName();
     }
 
     @GetMapping
@@ -86,8 +96,10 @@ public class TechnologyController {
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
     }
 
+
+    //searchSkills
     @GetMapping(value = "/searchByName")
-    public List<Technology> getTechnologyByName(@RequestParam(defaultValue = "") String name){
+    public List<Technology> getTechnologyByName(@RequestParam String name){
         if(name.isEmpty()){
             return technologyService.getAllTechnology();
         }

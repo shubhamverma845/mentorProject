@@ -17,6 +17,12 @@ public class MentorSkill {
     @Column
     long[] skillId;
 
+    @ColumnDefault("2.5")
+    float rating;
+
+    @ColumnDefault("0")
+    long trainingsDelivered;
+
     public long getMentorId() {
         return mentorId;
     }
@@ -49,9 +55,4 @@ public class MentorSkill {
         this.trainingsDelivered = trainingsDelivered;
     }
 
-    @ColumnDefault("2.5")
-    float rating;
-
-    @ColumnDefault("0")
-    long trainingsDelivered;
 }
