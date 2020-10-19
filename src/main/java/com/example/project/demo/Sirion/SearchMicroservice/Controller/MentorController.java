@@ -2,7 +2,6 @@ package com.example.project.demo.Sirion.SearchMicroservice.Controller;
 
 import com.example.project.demo.Sirion.SearchMicroservice.Model.Mentor;
 import com.example.project.demo.Sirion.SearchMicroservice.Service.MentorService;
-import com.example.project.demo.Sirion.TechnologyMicroservice.Model.Technology;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,7 +37,7 @@ public class MentorController {
     public ResponseEntity<Void> createMentor(@RequestBody Mentor mentor){
         mentorService.createMentor(mentor);
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/createMultipleMentors", headers = "Accept=application/json")

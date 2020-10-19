@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -79,14 +80,11 @@ public class MyController {
     public List<String> searchMentorBySkill(@RequestParam String skill){
 
         RestTemplate restTemplate = new RestTemplate();
-        final String baseUrl = "http://localhost:8969/technology/searchByName?name=" + skill;
+        final String baseUrl = "http://localhost:8969/technology/searchByName";
 
-        URI uri =  null;
-        try {
-            uri = new URI(baseUrl);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl).queryParam("name",skill).build().toUri();
+
+        System.out.println(uri.getPath());
 
         ResponseEntity<Technology[]> result = restTemplate.getForEntity(uri,Technology[].class);
 
@@ -115,6 +113,8 @@ public class MyController {
         return list;
     }
 
+
+    //getMentorDetails
     @GetMapping(value = "/getMentorDetails/{mentorId}", headers = "Accept=application/json")
     public ResponseEntity<MentorDetails> getMentorDetails(@PathVariable("mentorId") long mentorId){
 
@@ -137,14 +137,9 @@ public class MyController {
         for (long skillId: mentorSkills){
 
             RestTemplate restTemplate = new RestTemplate();
-            final String baseUrl = "http://localhost:8969/technology/getSkillName?skillId=" + skillId;
+            final String baseUrl = "http://localhost:8969/technology/getSkillName";
 
-            URI uri =  null;
-            try {
-                uri = new URI(baseUrl);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
+            URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl).queryParam("skillId", skillId).build().toUri();
 
             ResponseEntity<String> result = restTemplate.getForEntity(uri,String.class);
 

@@ -3,19 +3,13 @@ package com.example.project.demo.Sirion.SearchMicroservice.Controller;
 import com.example.project.demo.Sirion.SearchMicroservice.Model.MentorSkill;
 import com.example.project.demo.Sirion.SearchMicroservice.Service.MentorService;
 import com.example.project.demo.Sirion.SearchMicroservice.Service.MentorSkillService;
-import com.example.project.demo.Sirion.TechnologyMicroservice.Model.Technology;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.LongStream;
 
 @RestController
 @RequestMapping("/mentorSkill")
@@ -50,4 +44,9 @@ public class MentorSkillController {
         mentorSkillService.updateMentorSkill(currentMentorSkill);
         return new ResponseEntity<>("MentorSkill is updated",HttpStatus.OK);
     }
+
+//    @PutMapping(value = "/addMentorSkill/{mentorId}/{skillId}", headers = "Accept=application/json")
+//    public ResponseEntity<String> addMentorSkill(@PathVariable("mentorId") long mentorId, @PathVariable("skillId") long skillId){
+//
+//    }
 }

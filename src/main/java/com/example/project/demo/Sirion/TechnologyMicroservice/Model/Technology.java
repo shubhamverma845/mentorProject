@@ -23,7 +23,7 @@ public class Technology {
     @Column
     String[] pre_req;
 
-    @ColumnDefault("false")
+    @ColumnDefault("true")
     boolean status;
 
     public String getTechName() {

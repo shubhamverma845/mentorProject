@@ -25,5 +25,45 @@ public class User {
     boolean active;
 
     @Column(nullable = false)
-    String lORm;
+    char lORm;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public char getlORm() {
+        return lORm;
+    }
+
+    public void setlORm(char lORm) {
+        this.lORm = lORm;
+    }
 }
